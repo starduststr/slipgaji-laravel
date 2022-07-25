@@ -19,6 +19,7 @@ Route::get('/dashboard', [App\Http\Controllers\Dashboard::class, 'index'])->name
 Route::get('/data_karyawan', [App\Http\Controllers\DataKaryawan::class, 'index'])->name('data_karyawan');
 Route::post('/tambahkaryawan', [App\Http\Controllers\DataKaryawan::class, 'TambahData'])->name('tambahkaryawan');
 Route::post('/deletekaryawan', [App\Http\Controllers\DataKaryawan::class, 'delete'])->name('deletekaryawan');
+Route::post('/editkaryawan', [App\Http\Controllers\DataKaryawan::class, 'edit'])->name('editkaryawan');
 
 Auth::routes();
 
