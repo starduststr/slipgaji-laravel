@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataKaryawanModel;
+use App\Models\DataPresensiModel;
+use App\Models\DataGajiModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class DataKaryawan extends Controller
 {
@@ -15,6 +18,7 @@ class DataKaryawan extends Controller
 
     public function TambahData(Request $request)
     {
+        Schema::disableForeignKeyConstraints();
         $validasi = $request->validate([
             'kode' => ['required', 'max:6', 'unique:data_karyawan'],
             'nama' => ['required', 'max:20',],
@@ -33,6 +37,27 @@ class DataKaryawan extends Controller
                 'alamat' => $request->alamat,
                 'kontak' => $request->kontak
             ]);
+            //input ke tb presensi
+            for ($i=1;$i < 13; $i++){
+                DataPresensiModel::create([
+                    'kode' => $request->kode,
+                    'nama' => $request->nama,
+                    'bulan' => $i
+                ]);
+            }
+           
+
+            //input ke tb gaji
+            for ($i=1; $i < 13; $i++){
+                DataGajiModel::create([
+                    'kode' => $request->kode,
+                    'nama' => $request->nama,
+                    'jabatan' => $request->jabatan,
+                    'alamat' => $request->alamat,
+                    'bulan' => $i
+                ]);
+            }
+            Schema::enableForeignKeyConstraints();
             return redirect()->back()->with('success', 'DATA BERHASIL DITAMBAHKAN');
         }
     }

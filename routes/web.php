@@ -21,6 +21,15 @@ Route::post('/tambahkaryawan', [App\Http\Controllers\DataKaryawan::class, 'Tamba
 Route::post('/deletekaryawan', [App\Http\Controllers\DataKaryawan::class, 'delete'])->name('deletekaryawan');
 Route::post('/editkaryawan', [App\Http\Controllers\DataKaryawan::class, 'edit'])->name('editkaryawan');
 
+//presensi
+Route::get('/presensi-bulan/{bulan}', [App\Http\Controllers\DataPresensi::class, 'index'])->name('presensi-bulan');
+
+Route::post('/updatePresensi', [App\Http\Controllers\DataPresensi::class, 'updatePresensi'])->name('updatePresensi');
+Route::post('/updateAbsensi', [App\Http\Controllers\DataPresensi::class, 'updateAbsensi'])->name('updateAbsensi');
+
+
+//gaji
+Route::get('/gaji-bulan/{bulan}', [App\Http\Controllers\DataGaji::class, 'index'])->name('gaji-bulan');
+Route::post('/updateGaji', [App\Http\Controllers\DataGaji::class, 'updateGaji'])->name('updateGaji');
+Route::get('/cetakSlipGaji/{data}', [App\Http\Controllers\DataGaji::class, 'cetak'])->name('cetakSlipGaji');
 Auth::routes();
-
-
