@@ -25,7 +25,7 @@ class DataPresensi extends Controller
     public function updatePresensi(Request $request)
     {
         $data = DataPresensiModel::where(['kode' => $request->kode,'bulan'=>$request->bulan])->first();
-        $jumlahAbsensi  = 31 - (int)$data->jumlah_presensi;
+        $jumlahAbsensi  = 27 - (int)$data->jumlah_presensi;
 
         $data = [
             'jumlah_presensi' => (int)$data->jumlah_presensi + 1,
