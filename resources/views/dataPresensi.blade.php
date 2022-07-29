@@ -58,7 +58,7 @@
                                 <th>KODE</th>
                                 <th>NAMA</th>
                                 <div id="content">
-                                    @for ($i = 1; $i < 33; $i++) <th>{{ $i }}</th>
+                                    @for ($i = 1; $i < 28; $i++) <th>{{ $i }}</th>
                                         @endfor
                                 </div>
                                 <th>JUMLAH PRESENSI</th>
@@ -73,7 +73,7 @@
                                     <td>{{ $d['nama'] }} </td>
                                     @for ($i=0;$i < $d['jumlah_presensi'];$i++) <td><input type="checkbox" class="form-check" id="update{{ $i }}{{ $d['kode'] }}Absensi" value="{{$d['kode']}}" checked></td>
                                         @endfor
-                                        <?php $absensi = 33 - $d['jumlah_presensi']; ?>
+                                        <?php $absensi = 28 - $d['jumlah_presensi']; ?>
                                         @for ($i=1; $i < $absensi; $i++) <td><input type="checkbox" class="form-check" id="update{{ $i }}{{ $d['kode'] }}Presensi" value="{{$d['kode']}}"></td>
                                             @endfor
                                             <td id="presensi{{ $d['kode'] }}">{{ $d['jumlah_presensi'] }}</td>
@@ -97,7 +97,7 @@
                     }
                 });
                 $(document).ready(function() {
-                    for (let i = 1; i < 33; i++) {
+                    for (let i = 1; i < 28; i++) {
                         var data = JSON.stringify(dataPresensi);
                         var baru = JSON.parse(data);
 
