@@ -12,24 +12,24 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::get('/', [App\Http\Controllers\Dashboard::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\Dashboard::class, 'index'])->middleware('auth')->name('home');
 
-Route::get('/dashboard', [App\Http\Controllers\Dashboard::class, 'index'])->name('dashboard');
-Route::get('/data_karyawan', [App\Http\Controllers\DataKaryawan::class, 'index'])->name('data_karyawan');
-Route::post('/tambahkaryawan', [App\Http\Controllers\DataKaryawan::class, 'TambahData'])->name('tambahkaryawan');
-Route::post('/deletekaryawan', [App\Http\Controllers\DataKaryawan::class, 'delete'])->name('deletekaryawan');
-Route::post('/editkaryawan', [App\Http\Controllers\DataKaryawan::class, 'edit'])->name('editkaryawan');
+Route::get('/dashboard', [App\Http\Controllers\Dashboard::class, 'index'])->middleware('auth')->name('dashboard');
+Route::get('/data_karyawan', [App\Http\Controllers\DataKaryawan::class, 'index'])->middleware('auth')->name('data_karyawan');
+Route::post('/tambahkaryawan', [App\Http\Controllers\DataKaryawan::class, 'TambahData'])->middleware('auth')->name('tambahkaryawan');
+Route::post('/deletekaryawan', [App\Http\Controllers\DataKaryawan::class, 'delete'])->middleware('auth')->name('deletekaryawan');
+Route::post('/editkaryawan', [App\Http\Controllers\DataKaryawan::class, 'edit'])->middleware('auth')->name('editkaryawan');
 
 //presensi
-Route::get('/presensi-bulan/{bulan}', [App\Http\Controllers\DataPresensi::class, 'index'])->name('presensi-bulan');
+Route::get('/presensi-bulan/{bulan}', [App\Http\Controllers\DataPresensi::class, 'index'])->middleware('auth')->name('presensi-bulan');
 
-Route::post('/updatePresensi', [App\Http\Controllers\DataPresensi::class, 'updatePresensi'])->name('updatePresensi');
-Route::post('/updateAbsensi', [App\Http\Controllers\DataPresensi::class, 'updateAbsensi'])->name('updateAbsensi');
+Route::post('/updatePresensi', [App\Http\Controllers\DataPresensi::class, 'updatePresensi'])->middleware('auth')->name('updatePresensi');
+Route::post('/updateAbsensi', [App\Http\Controllers\DataPresensi::class, 'updateAbsensi'])->middleware('auth')->name('updateAbsensi');
 
 
 //gaji
-Route::get('/gaji-bulan/{bulan}', [App\Http\Controllers\DataGaji::class, 'index'])->name('gaji-bulan');
-Route::post('/updateGaji', [App\Http\Controllers\DataGaji::class, 'updateGaji'])->name('updateGaji');
-Route::get('/cetakSlipGaji/{data}', [App\Http\Controllers\DataGaji::class, 'cetak'])->name('cetakSlipGaji');
-Auth::routes();
+Route::get('/gaji-bulan/{bulan}', [App\Http\Controllers\DataGaji::class, 'index'])->middleware('auth')->name('gaji-bulan');
+Route::post('/updateGaji', [App\Http\Controllers\DataGaji::class, 'updateGaji'])->middleware('auth')->name('updateGaji');
+Route::get('/cetakSlipGaji/{data}', [App\Http\Controllers\DataGaji::class, 'cetak'])->middleware('auth')->name('cetakSlipGaji');
